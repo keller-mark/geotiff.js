@@ -227,7 +227,6 @@ class GeoTIFFImage {
     const format = this.fileDirectory.SampleFormat
       ? Math.max.apply(null, this.fileDirectory.SampleFormat) : 1;
     const bitsPerSample = this.fileDirectory.BitsPerSample[sampleIndex];
-    console.log(format, bitsPerSample, size);
     return arrayForType(format, bitsPerSample, size);
   }
 
