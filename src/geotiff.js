@@ -2,7 +2,7 @@ import GeoTIFFImage from './geotiffimage';
 import DataView64 from './dataview64';
 import DataSlice from './dataslice';
 import Pool from './pool';
-import { makeRemoteSource, makeBufferSource, makeFileSource, makeFileReaderSource } from './source';
+import { makeRemoteSource, makeBufferSource, makeFileReaderSource } from './source';
 import { fieldTypes, fieldTagNames, arrayFields, geoKeyNames } from './globals';
 import { writeGeotiff } from './geotiffwriter';
 import * as globals from './globals';
@@ -662,20 +662,6 @@ export async function fromUrl(url, options = {}) {
  */
 export async function fromArrayBuffer(arrayBuffer) {
   return GeoTIFF.fromSource(makeBufferSource(arrayBuffer));
-}
-
-/**
- * Construct a GeoTIFF from a local file path. This uses the node
- * [filesystem API]{@link https://nodejs.org/api/fs.html} and is
- * not available on browsers.
- *
- * N.B. After the GeoTIFF has been completely processed it needs
- * to be closed but only if it has been constructed from a file.
- * @param {string} path The file path to read from.
- * @returns {Promise.<GeoTIFF>} The resulting GeoTIFF file.
- */
-export async function fromFile(path) {
-  return GeoTIFF.fromSource(makeFileSource(path));
 }
 
 /**
